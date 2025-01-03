@@ -1,0 +1,12 @@
+<launch>
+
+    <!-- Node 1: Action client node -->
+    <node name="action_client_node" pkg="Simulation_pkg" type="action_client_node" output="screen">
+    </node>
+
+    <!-- Node 2: Target service node -->
+    <node name="target_service_node" pkg="Simulation_pkg" type="target_service_node" output="screen">
+    </node>
+    
+</launch>
+

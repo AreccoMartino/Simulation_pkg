@@ -2,7 +2,7 @@
 #include <actionlib/client/simple_action_client.h>
 #include <assignment_2_2024/PlanningAction.h>
 #include <nav_msgs/Odometry.h>
-#include <assignment2_rt/PositionVelocity.h>
+#include <Simulation_pkg/PositionVelocity.h>
 #include <thread>
 #include <mutex>
 #include <atomic>
@@ -10,7 +10,7 @@
 
 ros::Publisher position_velocity_pub;
 
-assignment2_rt::PositionVelocity pos_vel_msg;
+Simulation_pkg::PositionVelocity pos_vel_msg;
 
 // Action client for interacting with the Action Server
 std::shared_ptr<actionlib::SimpleActionClient<assignment_2_2024::PlanningAction>> ac_ptr;
@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
     ros::NodeHandle nh;
 
     // Publisher
-    position_velocity_pub = nh.advertise<assignment2_rt::PositionVelocity>("position_velocity", 10);
+    position_velocity_pub = nh.advertise<Simulation_pkg::PositionVelocity>("position_velocity", 10);
 
     // Subscriber
     ros::Subscriber odom_sub = nh.subscribe("/odom", 10, odomCallback);
@@ -133,6 +133,7 @@ int main(int argc, char** argv) {
 
     monitor_thread.join();
     return 0;
+    
 }
 
 

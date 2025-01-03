@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(assignment2_rt)
+project(Simulation_pkg)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -51,11 +51,10 @@ add_message_files(
 )
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(
+   FILES
+   TargetService.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -103,7 +102,7 @@ generate_messages(
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES assignment2_rt
+#  LIBRARIES Simulation_pkg
   CATKIN_DEPENDS actionlib geometry_msgs nav_msgs roscpp rospy std_msgs message_runtime
 #  DEPENDS system_lib
 )
@@ -121,7 +120,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/assignment2_rt.cpp
+#   src/${PROJECT_NAME}/Simulation_pkg.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -201,7 +200,7 @@ install(TARGETS action_client_node target_service_node
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_assignment2_rt.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_Simulation_pkg.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

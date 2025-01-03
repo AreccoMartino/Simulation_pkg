@@ -42,78 +42,27 @@ void monitorGoalStatus() {
         ac_mutex.lock();
         if (ac_ptr) {
             actionlib::SimpleClientGoalState state = ac_ptr->getState();
-            if (state == actionlib::SimpleClientGoalState::SUCCEEDED) {
+            if (state == actionlib::SimpleClientGoalState::SUCCEEDED && !goal_reached) {
                 ROS_INFO("Target reached!");
                 goal_reached = true; // Indicate that the goal was reached
-                break;
-            } 
+                request_coordinates = false; // Allow new goals to be set
+            } else if (state == actionlib::SimpleClientGoalState::ABORTED) {
+                ROS_WARN("Target could not be reached. Please set a new goal.");
+                goal_reached = true; // Allow setting a new goal
+                request_coordinates = false;
+            }
         }
         ac_mutex.unlock();
         rate.sleep();
     }
 }
 
-// Function to handle user input
-void inputThread() {
-    while (ros::ok()) {
-        std::string command;
-        ROS_INFO("Type 'set' to set a goal or 'cancel' to cancel:");
-
-        std::getline(std::cin, command);  // Read the user's command
-
-        if (command == "set" && !request_coordinates) {
-            // Request target coordinates
-            double x, y;
-            ROS_INFO("Enter target coordinates (x y):");
-            std::string coords;
-            std::getline(std::cin, coords);  // Read the line with coordinates
-
-            // Debug: Show input
-            ROS_INFO("You entered: '%s'", coords.c_str());  // Show what was entered for debugging
-
-            // Create a stringstream to parse the coordinates
-            std::stringstream ss(coords);
-            if (!(ss >> x >> y)) {  // Extract numbers from stringstream
-                ROS_ERROR("Invalid input. Enter two numbers (x y) separated by a space.");
-                continue;
-            }
-
-            // Set and send the goal
-            assignment_2_2024::PlanningGoal goal;
-            goal.target_pose.pose.position.x = x;
-            goal.target_pose.pose.position.y = y;
-
-            ac_mutex.lock();
-            ac_ptr->sendGoal(goal);
-            ac_mutex.unlock();
-
-            goal_reached = false;  // Reset goal status
-            ROS_INFO("Goal sent to (%.2f, %.2f).");
-
-            request_coordinates = true; // Mark that coordinates have been requested
-            goal_canceled = false; // Reset the cancel flag when a new goal is set
-        } else if (command == "cancel" && request_coordinates && !goal_canceled) {
-            // Cancel the current goal if it hasn't already been canceled
-            ac_mutex.lock();
-            ac_ptr->cancelGoal();
-            ac_mutex.unlock();
-            ROS_INFO("Goal canceled.");
-            goal_canceled = true; // Set the cancel flag to true after cancelation
-            request_coordinates = false; // Need to reset so i can reinsert the
-        } else if (goal_canceled) {
-            // If the goal is already canceled, do nothing for 'cancel' command
-            continue;
-        } else {
-            ROS_WARN("Unrecognized command. Type 'set' or 'cancel'.");
-        }
-    }
-}
 
 int main(int argc, char** argv) {
     ros::init(argc, argv, "action_client_node");
     ros::NodeHandle nh;
 
-    // publisher 
+    // Publisher
     position_velocity_pub = nh.advertise<assignment2_rt::PositionVelocity>("position_velocity", 10);
 
     // Subscriber
@@ -122,22 +71,68 @@ int main(int argc, char** argv) {
     // Action client
     ac_ptr = std::make_shared<actionlib::SimpleActionClient<assignment_2_2024::PlanningAction>>("/reaching_goal", true);
 
-
     ROS_INFO("Waiting for Action server...");
     ac_ptr->waitForServer();
     ROS_INFO("Action server available.");
 
-    // thread
+    // Start monitor thread
     std::thread monitor_thread(monitorGoalStatus);
-    std::thread input_thread(inputThread);
 
-   
-    ros::spin();
+    // Main loop for user interaction
+    while (ros::ok()) {
+        if (!request_coordinates) {
+            std::string command;
+            ROS_INFO("Type 'set' to set a goal or 'cancel' to cancel:");
+            std::cout.flush();
+            std::getline(std::cin, command);
 
+            if (command == "set") {
+                // Request and send target coordinates
+                double x, y;
+                ROS_INFO("Enter target coordinates (x y):");
+                std::string coords;
+                std::getline(std::cin, coords);
+
+                // Parse coordinates
+                std::stringstream ss(coords);
+                if (!(ss >> x >> y)) {
+                    ROS_ERROR("Invalid input. Enter two numbers (x y) separated by a space.");
+                    continue;
+                }
+
+                // Create and send goal
+                assignment_2_2024::PlanningGoal goal;
+                goal.target_pose.header.frame_id = "map"; // Ensure a valid frame
+                goal.target_pose.header.stamp = ros::Time::now();
+                goal.target_pose.pose.position.x = x;
+                goal.target_pose.pose.position.y = y;
+                goal.target_pose.pose.orientation.w = 1.0; // Default orientation
+
+                ac_mutex.lock();
+                ac_ptr->sendGoal(goal);
+                ac_mutex.unlock();
+
+                //request_coordinates = true;  // Mark that a goal has been requested
+                goal_reached = false;        // Reset goal reached flag
+                ROS_INFO("Goal sent to (%.2f, %.2f).", x, y);
+
+            } else if (command == "cancel" /*&& request_coordinates*/) {
+                // Cancel the current goal
+                ac_mutex.lock();
+                ac_ptr->cancelGoal();
+                ac_mutex.unlock();
+                ROS_INFO("Goal canceled.");
+                request_coordinates = false; // Allow setting a new goal
+            } else {
+                ROS_WARN("Unrecognized command. Type 'set' or 'cancel'.");
+            }
+        }
+
+        ros::spinOnce();
+    }
 
     monitor_thread.join();
-    input_thread.join();
-
     return 0;
 }
+
 

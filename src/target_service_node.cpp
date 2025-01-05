@@ -30,10 +30,9 @@ void targetCallback(const Simulation_pkg::PositionVelocity::ConstPtr &msg) {
     std::lock_guard<std::mutex> lock(target_mutex);
 
     // Update the target coordinates
-    target_x = msg->x;
-    target_y = msg->y;
+    target_x = msg->target_x;
+    target_y = msg->target_y;
 
-    ROS_INFO("Updated target coordinates: (x: %.2f, y: %.2f)", target_x, target_y);
 }
 
 int main(int argc, char **argv) {

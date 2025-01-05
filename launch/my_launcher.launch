@@ -1,4 +1,5 @@
 <launch>
+    <include file="/root/my_ros/src/assignment_2_2024/launch/assignment1.launch"/>
 
     <!-- Node 1: Action client node -->
     <node name="action_client_node" pkg="Simulation_pkg" type="action_client_node" output="screen">

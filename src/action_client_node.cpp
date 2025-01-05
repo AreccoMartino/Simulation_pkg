@@ -30,6 +30,8 @@ void odomCallback(const nav_msgs::Odometry::ConstPtr& msg) {
     pos_vel_msg.y = msg->pose.pose.position.y;
     pos_vel_msg.vel_x = msg->twist.twist.linear.x;
     pos_vel_msg.vel_z = msg->twist.twist.angular.z;
+    
+    
 
     // Publish custom message
     position_velocity_pub.publish(pos_vel_msg);
@@ -44,6 +46,7 @@ void monitorGoalStatus() {
             actionlib::SimpleClientGoalState state = ac_ptr->getState();
             if (state == actionlib::SimpleClientGoalState::SUCCEEDED && !goal_reached) {
                 ROS_INFO("Target reached!");
+                ROS_INFO("Type 'set' to set a goal or 'cancel' to cancel:");
                 goal_reached = true; // Indicate that the goal was reached
                 request_coordinates = false; // Allow new goals to be set
             } else if (state == actionlib::SimpleClientGoalState::ABORTED) {
@@ -99,6 +102,10 @@ int main(int argc, char** argv) {
                     ROS_ERROR("Invalid input. Enter two numbers (x y) separated by a space.");
                     continue;
                 }
+                
+                // update the msg with the new target
+                pos_vel_msg.target_x = x;
+                pos_vel_msg.target_y = y;
 
                 // Create and send goal
                 assignment_2_2024::PlanningGoal goal;
@@ -128,7 +135,7 @@ int main(int argc, char** argv) {
             }
         }
 
-        ros::spinOnce();
+        ros::spin();
     }
 
     monitor_thread.join();

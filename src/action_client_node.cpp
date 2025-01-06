@@ -99,7 +99,7 @@ int main(int argc, char** argv) {
             if (command == "set") {
                 // Request and send target coordinates
                 double x, y;
-                ROS_INFO("Enter target coordinates (x y):");
+                ROS_INFO("Enter target coordinates on the same line separated by space (x y):");
                 std::string coords;
                 std::getline(std::cin, coords);
 
@@ -107,6 +107,12 @@ int main(int argc, char** argv) {
                 std::stringstream ss(coords);
                 if (!(ss >> x >> y)) {
                     ROS_ERROR("Invalid input. Enter two numbers (x y) separated by a space.");
+                    continue;
+                }
+                
+                // Ensure both x and y are valid numbers (not NaN or infinity)
+                if (!std::isfinite(x) || !std::isfinite(y)) {
+                    ROS_ERROR("Invalid input. Both x and y must be finite numbers.");
                     continue;
                 }
                 

@@ -39,6 +39,11 @@ void odomCallback(const nav_msgs::Odometry::ConstPtr& msg) {
 
 // Function to monitor goal status
 void monitorGoalStatus() {
+
+    // Subscriber
+    ros::NodeHandle nh;
+    ros::Subscriber odom_sub = nh.subscribe("/odom", 10, odomCallback);
+	
     ros::Rate rate(10); // Monitoring frequency
     while (ros::ok()) {
         ac_mutex.lock();
@@ -56,6 +61,9 @@ void monitorGoalStatus() {
             }
         }
         ac_mutex.unlock();
+        
+        //ros::spinOnce to process odometry callbacks
+        ros::spinOnce();
         rate.sleep();
     }
 }
@@ -68,8 +76,7 @@ int main(int argc, char** argv) {
     // Publisher
     position_velocity_pub = nh.advertise<Simulation_pkg::PositionVelocity>("position_velocity", 10);
 
-    // Subscriber
-    ros::Subscriber odom_sub = nh.subscribe("/odom", 10, odomCallback);
+    
 
     // Action client
     ac_ptr = std::make_shared<actionlib::SimpleActionClient<assignment_2_2024::PlanningAction>>("/reaching_goal", true);
@@ -135,7 +142,7 @@ int main(int argc, char** argv) {
             }
         }
 
-        ros::spin();
+        ros::spinOnce();
     }
 
     monitor_thread.join();

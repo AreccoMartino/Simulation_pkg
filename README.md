@@ -42,7 +42,7 @@ type:
 rosservice call /get_target
 ```
 
-### 2. Open a new terminal to get the position velocity msg
+### 3. Open a new terminal to get the position velocity msg
 
 type: 
 ```bash

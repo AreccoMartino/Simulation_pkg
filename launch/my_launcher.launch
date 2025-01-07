@@ -1,5 +1,10 @@
 <launch>
-    <include file="/root/my_ros/src/assignment_2_2024/launch/assignment1.launch"/>
+    <include file="$(find assignment_2_2024)/launch/sim_w1.launch" />
+    <param name="des_pos_x" value= "0.0" />
+    <param name="des_pos_y" value= "1.0" />
+    <node pkg="assignment_2_2024" type="wall_follow_service.py" name="wall_follower" />
+    <node pkg="assignment_2_2024" type="go_to_point_service.py" name="go_to_point"  />
+    <node pkg="assignment_2_2024" type="bug_as.py" name="bug_action_service" />
 
     <!-- Node 1: Action client node -->
     <node name="action_client_node" pkg="Simulation_pkg" type="action_client_node" output="screen">

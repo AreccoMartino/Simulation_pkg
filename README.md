@@ -1,5 +1,10 @@
 # Robot Navigation with Action Client and Service Nodes
 
+## Documentazione
+
+Generated documentation is available [here](docs/html/index.html).
+
+
 ## Short Description of All Components
 
 This project involves a robot navigation system using ROS 2, where:

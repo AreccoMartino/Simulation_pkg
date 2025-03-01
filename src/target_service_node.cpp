@@ -1,3 +1,25 @@
+/**
+ * \file target_service_node.cpp
+ * \brief Target Service Node for handling target coordinates.
+ * \author Arecco Martino
+ * \version 0.1
+ * \date 27/02/2025
+ *
+ * \details
+ * This node provides a ROS service that returns the current target coordinates (x, y)
+ * when requested. It also subscribes to a topic that receives updated target coordinates
+ * and updates its internal state.
+ *
+ * \subsection Subscribed Topics
+ * - `position_velocity` (Simulation_pkg::PositionVelocity): Receives updated target position and velocity.
+ *
+ * \subsection Published Topics
+ * - None.
+ *
+ * \subsection Services
+ * - `get_target` (Simulation_pkg::TargetService): A service that returns the current target coordinates.
+ */
+
 #include <ros/ros.h>
 #include <Simulation_pkg/TargetService.h> // Service definition header
 #include <Simulation_pkg/PositionVelocity.h>
@@ -10,7 +32,16 @@ std::mutex target_mutex;
 float target_x = 0.0;
 float target_y = 0.0;
 
-// Callback function for the service
+/**
+ * \brief Callback function for the `get_target` service.
+ * \param req The request object, which is not used in this case.
+ * \param res The response object that will hold the target coordinates.
+ * \return Always returns true, indicating the service has been successfully processed.
+ *
+ * \details
+ * This callback is invoked when a client calls the `get_target` service. It returns
+ * the current target coordinates stored in the `target_x` and `target_y` variables.
+ */
 bool getTarget(Simulation_pkg::TargetService::Request &req,
                Simulation_pkg::TargetService::Response &res) {
     // Lock the mutex to ensure thread safety
@@ -25,16 +56,33 @@ bool getTarget(Simulation_pkg::TargetService::Request &req,
     return true;
 }
 
-// Subscriber callback to update the target coordinates from the action client
+/**
+ * \brief Callback function to update the target coordinates from the action client.
+ * \param msg The message containing the updated target position and velocity.
+ *
+ * \details
+ * This callback is invoked when a new message is received on the `position_velocity`
+ * topic. It updates the internal target coordinates (x, y) based on the received
+ * message.
+ */
 void targetCallback(const Simulation_pkg::PositionVelocity::ConstPtr &msg) {
     std::lock_guard<std::mutex> lock(target_mutex);
 
     // Update the target coordinates
     target_x = msg->target_x;
     target_y = msg->target_y;
-
 }
 
+/**
+ * \brief Main function to initialize the ROS node and handle service and subscription.
+ * \param argc The number of arguments passed to the program.
+ * \param argv The array of arguments passed to the program.
+ * \return 0 if the program runs successfully.
+ *
+ * \details
+ * This function initializes the ROS node, advertises the `get_target` service,
+ * and subscribes to the `position_velocity` topic to receive updated target coordinates.
+ */
 int main(int argc, char **argv) {
     ros::init(argc, argv, "target_service_node");
     ros::NodeHandle nh;

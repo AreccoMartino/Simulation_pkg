@@ -1,5 +1,5 @@
 <map id="target_service_node.cpp" name="target_service_node.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="261,5,442,32"/>
+<area shape="rect" id="node1" title="Target Service Node for handling target coordinates." alt="" coords="261,5,442,32"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,80,84,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="109,80,335,107"/>
 <area shape="rect" id="node4" title=" " alt="" coords="359,80,602,107"/>

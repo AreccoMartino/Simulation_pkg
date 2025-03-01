@@ -96,6 +96,13 @@ Atomic flag indicating whether the goal has been canceled.
 
 Atomic flag indicating whether the goal has been reached. 
 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_adfb2af476ffbaef72eac207d2c545eb1_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{action__client__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{action__client__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
 \index{action\_client\_node.cpp@{action\_client\_node.cpp}!main@{main}}
 \index{main@{main}!action\_client\_node.cpp@{action\_client\_node.cpp}}
@@ -116,7 +123,14 @@ Main function to initialize the R\+OS node and handle user interactions.
 \begin{DoxyReturn}{Returns}
 0 on successful execution.
 \end{DoxyReturn}
-This function initializes the R\+OS node, sets up the action client, starts a monitoring thread, and continuously handles user input for setting/canceling goals. \mbox{\Hypertarget{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624}\label{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624}} 
+This function initializes the R\+OS node, sets up the action client, starts a monitoring thread, and continuously handles user input for setting/canceling goals. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624}\label{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624}} 
 \index{action\_client\_node.cpp@{action\_client\_node.cpp}!monitorGoalStatus@{monitorGoalStatus}}
 \index{monitorGoalStatus@{monitorGoalStatus}!action\_client\_node.cpp@{action\_client\_node.cpp}}
 \doxysubsubsection{\texorpdfstring{monitorGoalStatus()}{monitorGoalStatus()}}
@@ -126,7 +140,21 @@ This function initializes the R\+OS node, sets up the action client, starts a mo
 
 Monitors the goal status and updates flags accordingly. 
 
-This function runs in a separate thread, checking the action server\textquotesingle{}s state. If the goal is reached, it updates the relevant flags and prompts the user for a new goal. \mbox{\Hypertarget{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}\label{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}} 
+This function runs in a separate thread, checking the action server\textquotesingle{}s state. If the goal is reached, it updates the relevant flags and prompts the user for a new goal. Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}\label{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}} 
 \index{action\_client\_node.cpp@{action\_client\_node.cpp}!odomCallback@{odomCallback}}
 \index{odomCallback@{odomCallback}!action\_client\_node.cpp@{action\_client\_node.cpp}}
 \doxysubsubsection{\texorpdfstring{odomCallback()}{odomCallback()}}
@@ -141,7 +169,14 @@ Callback function to process odometry data.
 {\em msg} & The odometry message containing position and velocity.\\
 \hline
 \end{DoxyParams}
-This function extracts the robot\textquotesingle{}s position (x, y) and velocity (linear, angular) from the odometry message and publishes it as a custom message. \mbox{\Hypertarget{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f}\label{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f}} 
+This function extracts the robot\textquotesingle{}s position (x, y) and velocity (linear, angular) from the odometry message and publishes it as a custom message. Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f}\label{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f}} 
 \index{action\_client\_node.cpp@{action\_client\_node.cpp}!request\_coordinates@{request\_coordinates}}
 \index{request\_coordinates@{request\_coordinates}!action\_client\_node.cpp@{action\_client\_node.cpp}}
 \doxysubsubsection{\texorpdfstring{request\_coordinates()}{request\_coordinates()}}
@@ -151,6 +186,13 @@ This function extracts the robot\textquotesingle{}s position (x, y) and velocity
 
 Atomic flag to request new coordinates from the user. 
 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f_icgraph}
+\end{center}
+\end{figure}
 
 
 \doxysubsection{Variable Documentation}

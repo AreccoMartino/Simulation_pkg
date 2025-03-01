@@ -1,0 +1,72 @@
+/**
+ * \mainpage ROS Action Client and Target Service Node Documentation
+ *
+ * \section intro Introduction
+ * This project consists of two key components:
+ * - **Action Client Node**: A ROS node that interacts with a ROS action server, sending goals and monitoring their status.
+ * - **Target Service Node**: A ROS node that provides a service to retrieve the current target coordinates (x, y) and updates the coordinates by subscribing to a specific topic.
+ *
+ * These nodes work together in a simulation system to handle goal coordination and tracking.
+ *
+ *
+ * ---
+ *
+ * \section action_client_node Action Client Node    
+ * This node is responsible for interacting with a ROS action server. It sends goals and monitors the action's status.
+ * The Action Client Node performs the following operations:
+ * - Sends goal coordinates to the action server.
+ * - Monitors the status of the goal, checking if it has been reached or aborted.
+ * - Publishes the robot's position and velocity through a custom message.
+ *
+ * \subsection action_client_call_graph Function Call Diagram
+ * Below is the function call diagram that illustrates the key functions involved in the Action Client Node:
+ * \dot
+ * digraph CallGraph {
+ *     rankdir=LR;
+ *     "main" -> "monitorGoalStatus";
+ *     "main" -> "odomCallback";
+ *     "monitorGoalStatus" -> "odomCallback";
+ *     "main" -> "sendGoal";
+ *     "sendGoal" -> "ac_ptr->sendGoal";
+ * }
+ * \enddot
+ *
+ * \subsection action_client_file File: action_client_node.cpp
+ * This file implements the Action Client Node, handling goal sending, status monitoring, and publishing position/velocity data.
+ *
+ *
+ * ---
+ *
+ *
+ * \section target_service_node Target Service Node    
+ * The Target Service Node provides a service to return the current target coordinates and updates the target coordinates based on incoming messages.
+ * It performs the following tasks:
+ * - Provides the `get_target` service that responds with the current target coordinates (x, y).
+ * - Subscribes to the `position_velocity` topic to update the internal target coordinates.
+ *
+ * \subsection target_service_call_graph Function Call Diagram
+ * Below is the function call diagram for the Target Service Node:
+ * \dot
+ * digraph CallGraph {
+ *     rankdir=LR;
+ *     "main" -> "getTarget";
+ *     "main" -> "targetCallback";
+ *     "getTarget" -> "target_mutex";
+ *     "targetCallback" -> "target_mutex";
+ * }
+ * \enddot
+ *
+ *
+ *
+ * \subsection target_service_file File: target_service_node.cpp
+ * This file implements the Target Service Node, handling the service and subscription to update target coordinates.
+ *
+ *
+ * ---
+ *
+ * \section files Source Files
+ * The following are the source files for both nodes:
+ * - **Action Client Node**: `action_client_node.cpp`
+ * - **Target Service Node**: `target_service_node.cpp`
+ */
+

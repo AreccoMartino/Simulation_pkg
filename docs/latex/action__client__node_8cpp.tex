@@ -14,7 +14,8 @@ Action Client node for interacting with a R\+OS action server.
 {\ttfamily \#include $<$mutex$>$}\newline
 {\ttfamily \#include $<$atomic$>$}\newline
 {\ttfamily \#include $<$sstream$>$}\newline
-Include dependency graph for action\+\_\+client\+\_\+node.\+cpp\+:\nopagebreak
+Include dependency graph for action\+\_\+client\+\_\+node.\+cpp\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -96,7 +97,8 @@ Atomic flag indicating whether the goal has been canceled.
 
 Atomic flag indicating whether the goal has been reached. 
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -123,7 +125,8 @@ Main function to initialize the R\+OS node and handle user interactions.
 \begin{DoxyReturn}{Returns}
 0 on successful execution.
 \end{DoxyReturn}
-This function initializes the R\+OS node, sets up the action client, starts a monitoring thread, and continuously handles user input for setting/canceling goals. Here is the call graph for this function\+:\nopagebreak
+This function initializes the R\+OS node, sets up the action client, starts a monitoring thread, and continuously handles user input for setting/canceling goals. Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -140,14 +143,16 @@ This function initializes the R\+OS node, sets up the action client, starts a mo
 
 Monitors the goal status and updates flags accordingly. 
 
-This function runs in a separate thread, checking the action server\textquotesingle{}s state. If the goal is reached, it updates the relevant flags and prompts the user for a new goal. Here is the call graph for this function\+:\nopagebreak
+This function runs in a separate thread, checking the action server\textquotesingle{}s state. If the goal is reached, it updates the relevant flags and prompts the user for a new goal. Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=340pt]{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -169,7 +174,8 @@ Callback function to process odometry data.
 {\em msg} & The odometry message containing position and velocity.\\
 \hline
 \end{DoxyParams}
-This function extracts the robot\textquotesingle{}s position (x, y) and velocity (linear, angular) from the odometry message and publishes it as a custom message. Here is the caller graph for this function\+:\nopagebreak
+This function extracts the robot\textquotesingle{}s position (x, y) and velocity (linear, angular) from the odometry message and publishes it as a custom message. Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -186,7 +192,8 @@ This function extracts the robot\textquotesingle{}s position (x, y) and velocity
 
 Atomic flag to request new coordinates from the user. 
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

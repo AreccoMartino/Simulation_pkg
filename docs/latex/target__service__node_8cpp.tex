@@ -1,0 +1,73 @@
+\hypertarget{target__service__node_8cpp}{}\doxysection{target\+\_\+service\+\_\+node.\+cpp File Reference}
+\label{target__service__node_8cpp}\index{target\_service\_node.cpp@{target\_service\_node.cpp}}
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$Simulation\+\_\+pkg/\+Target\+Service.\+h$>$}\newline
+{\ttfamily \#include $<$Simulation\+\_\+pkg/\+Position\+Velocity.\+h$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for target\+\_\+service\+\_\+node.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{target__service__node_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{target__service__node_8cpp_a6c3aafb07d4adb762f5dfdace5a5f2b0}{get\+Target}} (Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Request \&req, Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Response \&res)
+\item 
+void \mbox{\hyperlink{target__service__node_8cpp_ae82d53a3349b59fd1c06c05fe162ad63}{target\+Callback}} (const Simulation\+\_\+pkg\+::\+Position\+Velocity\+::\+Const\+Ptr \&msg)
+\item 
+int \mbox{\hyperlink{target__service__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{target__service__node_8cpp_aee6665e6bdfaf04edece9acdc743bb9a}{target\+\_\+mutex}}
+\item 
+float \mbox{\hyperlink{target__service__node_8cpp_a365207e7fb07cd4db79d049a1ded2244}{target\+\_\+x}} = 0.\+0
+\item 
+float \mbox{\hyperlink{target__service__node_8cpp_a65965c691346cf996ec91c2cd057ae31}{target\+\_\+y}} = 0.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{target__service__node_8cpp_a6c3aafb07d4adb762f5dfdace5a5f2b0}\label{target__service__node_8cpp_a6c3aafb07d4adb762f5dfdace5a5f2b0}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!getTarget@{getTarget}}
+\index{getTarget@{getTarget}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{getTarget()}{getTarget()}}
+{\footnotesize\ttfamily bool get\+Target (\begin{DoxyParamCaption}\item[{Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Request \&}]{req,  }\item[{Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{target__service__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{target__service__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!main@{main}}
+\index{main@{main}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{target__service__node_8cpp_ae82d53a3349b59fd1c06c05fe162ad63}\label{target__service__node_8cpp_ae82d53a3349b59fd1c06c05fe162ad63}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!targetCallback@{targetCallback}}
+\index{targetCallback@{targetCallback}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{targetCallback()}{targetCallback()}}
+{\footnotesize\ttfamily void target\+Callback (\begin{DoxyParamCaption}\item[{const Simulation\+\_\+pkg\+::\+Position\+Velocity\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{target__service__node_8cpp_aee6665e6bdfaf04edece9acdc743bb9a}\label{target__service__node_8cpp_aee6665e6bdfaf04edece9acdc743bb9a}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!target\_mutex@{target\_mutex}}
+\index{target\_mutex@{target\_mutex}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{target\_mutex}{target\_mutex}}
+{\footnotesize\ttfamily std\+::mutex target\+\_\+mutex}
+
+\mbox{\Hypertarget{target__service__node_8cpp_a365207e7fb07cd4db79d049a1ded2244}\label{target__service__node_8cpp_a365207e7fb07cd4db79d049a1ded2244}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!target\_x@{target\_x}}
+\index{target\_x@{target\_x}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{target\_x}{target\_x}}
+{\footnotesize\ttfamily float target\+\_\+x = 0.\+0}
+
+\mbox{\Hypertarget{target__service__node_8cpp_a65965c691346cf996ec91c2cd057ae31}\label{target__service__node_8cpp_a65965c691346cf996ec91c2cd057ae31}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!target\_y@{target\_y}}
+\index{target\_y@{target\_y}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{target\_y}{target\_y}}
+{\footnotesize\ttfamily float target\+\_\+y = 0.\+0}
+

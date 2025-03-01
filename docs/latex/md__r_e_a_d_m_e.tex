@@ -1,0 +1,92 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Short Description of All Components}\label{md__r_e_a_d_m_e_autotoc_md1}
+This project involves a robot navigation system using R\+OS 2, where\+:
+\begin{DoxyEnumerate}
+\item {\bfseries{Action Client Node}}\+: Allows users to set navigation targets, monitor progress, and cancel tasks. It also publishes the robot\textquotesingle{}s position and velocity.
+\item {\bfseries{Service Node}}\+: Provides a service to return the last target coordinates.
+\item {\bfseries{Launch File}}\+: Starts the simulation environment, action client, and service node.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{How to Run and how to use}\label{md__r_e_a_d_m_e_autotoc_md2}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsection{0. Clone the Repository}\label{md__r_e_a_d_m_e_autotoc_md3}
+Clone the repository into R\+OS 2 workspace in the src folder\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{git clone <URL\_of\_this\_repository>}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{1.\+1 Open a terminal and launch the following command\+:}\label{md__r_e_a_d_m_e_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{roslaunch Simulation\_pkg my\_launcher.launch}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{1.\+2 Selection of the action for the action\+\_\+client (in the already launched terminal)}\label{md__r_e_a_d_m_e_autotoc_md5}
+To set a goal\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{set}
+\end{DoxyCode}
+
+
+To cancel a selected goal\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cancel}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{1.\+3 Coordinates choice}\label{md__r_e_a_d_m_e_autotoc_md6}
+Insert the x and the y in a single line, example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{0 8}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsection{2. Open a new terminal to get the target service}\label{md__r_e_a_d_m_e_autotoc_md7}
+type\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rosservice call /get\_target}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsection{3. Open a new terminal to get the position velocity msg}\label{md__r_e_a_d_m_e_autotoc_md8}
+type\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{rostopic echo /position\_velocity}
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysection{Description of action\+\_\+client\+\_\+node}\label{md__r_e_a_d_m_e_autotoc_md9}
+The {\ttfamily action\+\_\+client\+\_\+node} is responsible for interacting with an action server, sending goals, monitoring their status, and publishing the robot\textquotesingle{}s current position and velocity.\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{Key Features\+:}\label{md__r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyItemize}
+\item {\bfseries{User Interaction}}\+: The node accepts user input to set or cancel goals.
+\item {\bfseries{Action Client}}\+: Manages goals using R\+OS 2 action clients, sending targets to the robot and receiving feedback.
+\item {\bfseries{Odometry Processing}}\+: Subscribes to the {\ttfamily /odom} topic to get the robot\textquotesingle{}s position and velocity.
+\item {\bfseries{Publishing Position and Velocity}}\+: Publishes this data as a custom message {\ttfamily position\+\_\+velocity}.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysubsection{Code Overview\+:}\label{md__r_e_a_d_m_e_autotoc_md11}
+
+\begin{DoxyItemize}
+\item {\bfseries{Action Client Initialization}}\+: The action client is set up to communicate with the {\ttfamily /reaching\+\_\+goal} action server.
+\item {\bfseries{Odometry Callback}}\+: The {\ttfamily odom\+Callback} function processes odometry messages and updates the {\ttfamily position\+\_\+velocity} topic with the robot\textquotesingle{}s current state.
+\item {\bfseries{Goal Monitoring Thread}}\+: A separate thread checks the status of the goal, allowing users to know when the robot reaches the target or if the goal is aborted.
+\item {\bfseries{User Commands}}\+: The node accepts user commands\+:
+\begin{DoxyItemize}
+\item {\ttfamily set} to set a goal.
+\item {\ttfamily cancel} to cancel an ongoing task.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysubsection{Relevant Topics\+:}\label{md__r_e_a_d_m_e_autotoc_md12}
+
+\begin{DoxyItemize}
+\item {\bfseries{Subscribed}}\+: {\ttfamily /odom} ({\ttfamily nav\+\_\+msgs/\+Odometry})
+\item {\bfseries{Published}}\+: {\ttfamily position\+\_\+velocity} ({\ttfamily Simulation\+\_\+pkg/\+Position\+Velocity})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysubsection{Relevant Actions\+:}\label{md__r_e_a_d_m_e_autotoc_md13}
+
+\begin{DoxyItemize}
+\item {\bfseries{Action Server}}\+: {\ttfamily /reaching\+\_\+goal} ({\ttfamily assignment\+\_\+2\+\_\+2024\+::\+Planning\+Action})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysection{target\+\_\+service\+\_\+node}\label{md__r_e_a_d_m_e_autotoc_md14}
+The {\ttfamily target\+\_\+service\+\_\+node} provides a service to return the last target coordinates sent by the user, ensuring the robot knows its last set goal.\hypertarget{md__r_e_a_d_m_e_autotoc_md15}{}\doxysubsection{Key Features\+:}\label{md__r_e_a_d_m_e_autotoc_md15}
+
+\begin{DoxyItemize}
+\item {\bfseries{Service Provider}}\+: Offers the {\ttfamily get\+\_\+target} service, which responds with the last known target coordinates.
+\item {\bfseries{Target Updates}}\+: Subscribes to {\ttfamily position\+\_\+velocity} to keep track of the latest goal coordinates sent by the {\ttfamily action\+\_\+client\+\_\+node}.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md16}{}\doxysubsection{Code Overview\+:}\label{md__r_e_a_d_m_e_autotoc_md16}
+
+\begin{DoxyItemize}
+\item {\bfseries{Service Initialization}}\+: The node advertises the {\ttfamily get\+\_\+target} service, which clients can call to retrieve the last target coordinates.
+\item {\bfseries{Target Update Callback}}\+: Listens to {\ttfamily position\+\_\+velocity} messages to update the stored target coordinates.
+\item {\bfseries{Thread Safety}}\+: Uses a mutex to ensure thread-\/safe access to the target coordinates when updating or providing them.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md17}{}\doxysubsection{Relevant Topics\+:}\label{md__r_e_a_d_m_e_autotoc_md17}
+
+\begin{DoxyItemize}
+\item {\bfseries{Subscribed}}\+: {\ttfamily position\+\_\+velocity} ({\ttfamily Simulation\+\_\+pkg/\+Position\+Velocity})
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md18}{}\doxysubsection{Relevant Services\+:}\label{md__r_e_a_d_m_e_autotoc_md18}
+
+\begin{DoxyItemize}
+\item {\bfseries{Service Provided}}\+: {\ttfamily get\+\_\+target} ({\ttfamily Simulation\+\_\+pkg\+::\+Target\+Service}) 
+\end{DoxyItemize}

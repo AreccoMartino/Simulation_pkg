@@ -9,8 +9,7 @@ Target Service Node for handling target coordinates.
 {\ttfamily \#include $<$Simulation\+\_\+pkg/\+Target\+Service.\+h$>$}\newline
 {\ttfamily \#include $<$Simulation\+\_\+pkg/\+Position\+Velocity.\+h$>$}\newline
 {\ttfamily \#include $<$mutex$>$}\newline
-Include dependency graph for target\+\_\+service\+\_\+node.\+cpp\+:
-\nopagebreak
+Include dependency graph for target\+\_\+service\+\_\+node.\+cpp\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -49,11 +48,11 @@ Arecco Martino
 \begin{DoxyDate}{Date}
 27/02/2025
 \end{DoxyDate}
-This node provides a R\+OS service that returns the current target coordinates (x, y) when requested. It also subscribes to a topic that receives updated target coordinates and updates its internal state.\hypertarget{target__service__node_8cpp_Subscribed}{}\doxysubsubsection{Topics}\label{target__service__node_8cpp_Subscribed}
+This node provides a R\+OS service that returns the current target coordinates (x, y) when requested. It also subscribes to a topic that receives updated target coordinates and updates its internal state.\hypertarget{target__service__node_8cpp_Subscribed_Topics}{}\doxysubsubsection{Subscribed\+\_\+\+Topics}\label{target__service__node_8cpp_Subscribed_Topics}
 
 \begin{DoxyItemize}
 \item {\ttfamily position\+\_\+velocity} (Simulation\+\_\+pkg\+::\+Position\+Velocity)\+: Receives updated target position and velocity.
-\end{DoxyItemize}\hypertarget{target__service__node_8cpp_Published}{}\doxysubsubsection{Topics}\label{target__service__node_8cpp_Published}
+\end{DoxyItemize}\hypertarget{target__service__node_8cpp_Published_Topics}{}\doxysubsubsection{Published\+\_\+\+Topics}\label{target__service__node_8cpp_Published_Topics}
 
 \begin{DoxyItemize}
 \item None.
@@ -84,8 +83,7 @@ Callback function for the {\ttfamily get\+\_\+target} service.
 \begin{DoxyReturn}{Returns}
 Always returns true, indicating the service has been successfully processed.
 \end{DoxyReturn}
-This callback is invoked when a client calls the {\ttfamily get\+\_\+target} service. It returns the current target coordinates stored in the {\ttfamily target\+\_\+x} and {\ttfamily target\+\_\+y} variables. Here is the caller graph for this function\+:
-\nopagebreak
+This callback is invoked when a client calls the {\ttfamily get\+\_\+target} service. It returns the current target coordinates stored in the {\ttfamily target\+\_\+x} and {\ttfamily target\+\_\+y} variables. Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -112,8 +110,7 @@ Main function to initialize the R\+OS node and handle service and subscription.
 \begin{DoxyReturn}{Returns}
 0 if the program runs successfully.
 \end{DoxyReturn}
-This function initializes the R\+OS node, advertises the {\ttfamily get\+\_\+target} service, and subscribes to the {\ttfamily position\+\_\+velocity} topic to receive updated target coordinates. Here is the call graph for this function\+:
-\nopagebreak
+This function initializes the R\+OS node, advertises the {\ttfamily get\+\_\+target} service, and subscribes to the {\ttfamily position\+\_\+velocity} topic to receive updated target coordinates. Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -135,8 +132,7 @@ Callback function to update the target coordinates from the action client.
 {\em msg} & The message containing the updated target position and velocity.\\
 \hline
 \end{DoxyParams}
-This callback is invoked when a new message is received on the {\ttfamily position\+\_\+velocity} topic. It updates the internal target coordinates (x, y) based on the received message. Here is the caller graph for this function\+:
-\nopagebreak
+This callback is invoked when a new message is received on the {\ttfamily position\+\_\+velocity} topic. It updates the internal target coordinates (x, y) based on the received message. Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

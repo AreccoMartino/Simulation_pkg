@@ -1,7 +1,0 @@
-<map id="main" name="main">
-<area shape="rect" id="node1" title="Main function to initialize the ROS node and handle user interactions." alt="" coords="5,56,60,83"/>
-<area shape="rect" id="node2" href="$action__client__node_8cpp.html#adfb2af476ffbaef72eac207d2c545eb1" title="Atomic flag indicating whether the goal has been reached." alt="" coords="323,5,432,32"/>
-<area shape="rect" id="node3" href="$action__client__node_8cpp.html#aca2a42c0174bb5e45ddb5a69d7653624" title="Monitors the goal status and updates flags accordingly." alt="" coords="108,56,252,83"/>
-<area shape="rect" id="node5" href="$action__client__node_8cpp.html#a6f6ab01ddb5446f255990ca90234be5f" title="Atomic flag to request new coordinates from the user." alt="" coords="300,107,455,133"/>
-<area shape="rect" id="node4" href="$action__client__node_8cpp.html#ae77e5d68ff0f4892f5154064e8b5e21c" title="Callback function to process odometry data." alt="" coords="320,56,435,83"/>
-</map>

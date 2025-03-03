@@ -1,4 +1,0 @@
-<map id="targetCallback" name="targetCallback">
-<area shape="rect" id="node1" title="Callback function to update the target coordinates from the action client." alt="" coords="108,5,225,32"/>
-<area shape="rect" id="node2" href="$target__service__node_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Main function to initialize the ROS node and handle service and subscription." alt="" coords="5,5,60,32"/>
-</map>

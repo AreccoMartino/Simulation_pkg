@@ -11,13 +11,13 @@
  * and updates its internal state.
  *
  * \subsection Subscribed_Topics
- * - `position_velocity` (Simulation_pkg::PositionVelocity): Receives updated target position and velocity.
+ * - `/position_velocity` (Simulation_pkg::PositionVelocity): Receives updated target position and velocity.
  *
  * \subsection Published_Topics
  * - None.
  *
  * \subsection Services
- * - `get_target` (Simulation_pkg::TargetService): A service that returns the current target coordinates.
+ * - `/get_target` (Simulation_pkg::TargetService): A service that returns the current target coordinates.
  */
 
 #include <ros/ros.h>

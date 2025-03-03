@@ -1,0 +1,166 @@
+\hypertarget{target__service__node_8cpp}{}\doxysection{target\+\_\+service\+\_\+node.\+cpp File Reference}
+\label{target__service__node_8cpp}\index{target\_service\_node.cpp@{target\_service\_node.cpp}}
+
+
+Target Service Node for handling target coordinates.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$Simulation\+\_\+pkg/\+Target\+Service.\+h$>$}\newline
+{\ttfamily \#include $<$Simulation\+\_\+pkg/\+Position\+Velocity.\+h$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+Include dependency graph for target\+\_\+service\+\_\+node.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{target__service__node_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{target__service__node_8cpp_a6c3aafb07d4adb762f5dfdace5a5f2b0}{get\+Target}} (Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Request \&req, Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Response \&res)
+\begin{DoxyCompactList}\small\item\em Callback function for the {\ttfamily get\+\_\+target} service. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{target__service__node_8cpp_ae82d53a3349b59fd1c06c05fe162ad63}{target\+Callback}} (const Simulation\+\_\+pkg\+::\+Position\+Velocity\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function to update the target coordinates from the action client. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{target__service__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function to initialize the R\+OS node and handle service and subscription. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+std\+::mutex \mbox{\hyperlink{target__service__node_8cpp_aee6665e6bdfaf04edece9acdc743bb9a}{target\+\_\+mutex}}
+\item 
+float \mbox{\hyperlink{target__service__node_8cpp_a365207e7fb07cd4db79d049a1ded2244}{target\+\_\+x}} = 0.\+0
+\item 
+float \mbox{\hyperlink{target__service__node_8cpp_a65965c691346cf996ec91c2cd057ae31}{target\+\_\+y}} = 0.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Target Service Node for handling target coordinates. 
+
+\begin{DoxyAuthor}{Author}
+Arecco Martino 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+27/02/2025
+\end{DoxyDate}
+This node provides a R\+OS service that returns the current target coordinates (x, y) when requested. It also subscribes to a topic that receives updated target coordinates and updates its internal state.\hypertarget{target__service__node_8cpp_Subscribed_Topics}{}\doxysubsubsection{Subscribed\+\_\+\+Topics}\label{target__service__node_8cpp_Subscribed_Topics}
+
+\begin{DoxyItemize}
+\item {\ttfamily /position\+\_\+velocity} (Simulation\+\_\+pkg\+::\+Position\+Velocity)\+: Receives updated target position and velocity.
+\end{DoxyItemize}\hypertarget{target__service__node_8cpp_Published_Topics}{}\doxysubsubsection{Published\+\_\+\+Topics}\label{target__service__node_8cpp_Published_Topics}
+
+\begin{DoxyItemize}
+\item None.
+\end{DoxyItemize}\hypertarget{target__service__node_8cpp_Services}{}\doxysubsubsection{Services}\label{target__service__node_8cpp_Services}
+
+\begin{DoxyItemize}
+\item {\ttfamily /get\+\_\+target} (Simulation\+\_\+pkg\+::\+Target\+Service)\+: A service that returns the current target coordinates. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{target__service__node_8cpp_a6c3aafb07d4adb762f5dfdace5a5f2b0}\label{target__service__node_8cpp_a6c3aafb07d4adb762f5dfdace5a5f2b0}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!getTarget@{getTarget}}
+\index{getTarget@{getTarget}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{getTarget()}{getTarget()}}
+{\footnotesize\ttfamily bool get\+Target (\begin{DoxyParamCaption}\item[{Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Request \&}]{req,  }\item[{Simulation\+\_\+pkg\+::\+Target\+Service\+::\+Response \&}]{res }\end{DoxyParamCaption})}
+
+
+
+Callback function for the {\ttfamily get\+\_\+target} service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em req} & The request object, which is not used in this case. \\
+\hline
+{\em res} & The response object that will hold the target coordinates. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Always returns true, indicating the service has been successfully processed.
+\end{DoxyReturn}
+This callback is invoked when a client calls the {\ttfamily get\+\_\+target} service. It returns the current target coordinates stored in the {\ttfamily target\+\_\+x} and {\ttfamily target\+\_\+y} variables. Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{target__service__node_8cpp_a6c3aafb07d4adb762f5dfdace5a5f2b0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{target__service__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{target__service__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!main@{main}}
+\index{main@{main}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function to initialize the R\+OS node and handle service and subscription. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of arguments passed to the program. \\
+\hline
+{\em argv} & The array of arguments passed to the program. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if the program runs successfully.
+\end{DoxyReturn}
+This function initializes the R\+OS node, advertises the {\ttfamily get\+\_\+target} service, and subscribes to the {\ttfamily position\+\_\+velocity} topic to receive updated target coordinates. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{target__service__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{target__service__node_8cpp_ae82d53a3349b59fd1c06c05fe162ad63}\label{target__service__node_8cpp_ae82d53a3349b59fd1c06c05fe162ad63}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!targetCallback@{targetCallback}}
+\index{targetCallback@{targetCallback}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{targetCallback()}{targetCallback()}}
+{\footnotesize\ttfamily void target\+Callback (\begin{DoxyParamCaption}\item[{const Simulation\+\_\+pkg\+::\+Position\+Velocity\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function to update the target coordinates from the action client. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The message containing the updated target position and velocity.\\
+\hline
+\end{DoxyParams}
+This callback is invoked when a new message is received on the {\ttfamily position\+\_\+velocity} topic. It updates the internal target coordinates (x, y) based on the received message. Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{target__service__node_8cpp_ae82d53a3349b59fd1c06c05fe162ad63_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{target__service__node_8cpp_aee6665e6bdfaf04edece9acdc743bb9a}\label{target__service__node_8cpp_aee6665e6bdfaf04edece9acdc743bb9a}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!target\_mutex@{target\_mutex}}
+\index{target\_mutex@{target\_mutex}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{target\_mutex}{target\_mutex}}
+{\footnotesize\ttfamily std\+::mutex target\+\_\+mutex}
+
+\mbox{\Hypertarget{target__service__node_8cpp_a365207e7fb07cd4db79d049a1ded2244}\label{target__service__node_8cpp_a365207e7fb07cd4db79d049a1ded2244}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!target\_x@{target\_x}}
+\index{target\_x@{target\_x}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{target\_x}{target\_x}}
+{\footnotesize\ttfamily float target\+\_\+x = 0.\+0}
+
+\mbox{\Hypertarget{target__service__node_8cpp_a65965c691346cf996ec91c2cd057ae31}\label{target__service__node_8cpp_a65965c691346cf996ec91c2cd057ae31}} 
+\index{target\_service\_node.cpp@{target\_service\_node.cpp}!target\_y@{target\_y}}
+\index{target\_y@{target\_y}!target\_service\_node.cpp@{target\_service\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{target\_y}{target\_y}}
+{\footnotesize\ttfamily float target\+\_\+y = 0.\+0}
+

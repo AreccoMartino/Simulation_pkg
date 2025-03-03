@@ -1,0 +1,5 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="Main function to initialize the ROS node and handle service and subscription." alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node2" href="$target__service__node_8cpp.html#a6c3aafb07d4adb762f5dfdace5a5f2b0" title="Callback function for the get_target service." alt="" coords="125,5,208,32"/>
+<area shape="rect" id="node3" href="$target__service__node_8cpp.html#ae82d53a3349b59fd1c06c05fe162ad63" title="Callback function to update the target coordinates from the action client." alt="" coords="108,56,225,83"/>
+</map>

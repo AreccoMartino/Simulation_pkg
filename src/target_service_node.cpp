@@ -10,10 +10,10 @@
  * when requested. It also subscribes to a topic that receives updated target coordinates
  * and updates its internal state.
  *
- * \subsection Subscribed Topics
+ * \subsection Subscribed_Topics
  * - `position_velocity` (Simulation_pkg::PositionVelocity): Receives updated target position and velocity.
  *
- * \subsection Published Topics
+ * \subsection Published_Topics
  * - None.
  *
  * \subsection Services

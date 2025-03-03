@@ -1,0 +1,47 @@
+\hypertarget{index_intro}{}\doxysection{Introduction}\label{index_intro}
+This project consists of two key components\+:
+\begin{DoxyItemize}
+\item {\bfseries{Action Client Node}}\+: A R\+OS node that interacts with a R\+OS action server, sending goals and monitoring their status.
+\item {\bfseries{Target Service Node}}\+: A R\+OS node that provides a service to retrieve the current target coordinates (x, y) and updates the coordinates by subscribing to a specific topic.
+\end{DoxyItemize}
+
+These nodes work together in a simulation system to handle goal coordination and tracking.
+
+\DoxyHorRuler{0}
+\hypertarget{index_action_client_node}{}\doxysection{Action Client Node}\label{index_action_client_node}
+~\newline
+ This node is responsible for interacting with a R\+OS action server. It sends goals and monitors the action\textquotesingle{}s status. The Action Client Node performs the following operations\+:
+\begin{DoxyItemize}
+\item Sends goal coordinates to the action server.
+\item Monitors the status of the goal, checking if it has been reached or aborted.
+\item Publishes the robot\textquotesingle{}s position and velocity through a custom message.
+\end{DoxyItemize}\hypertarget{index_action_client_call_graph}{}\doxysubsection{Function Call Diagram}\label{index_action_client_call_graph}
+Below is the function call diagram that illustrates the key functions involved in the Action Client Node\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_1}}
+\end{DoxyImageNoCaption}
+\hypertarget{index_action_client_file}{}\doxysubsection{File\+: action\+\_\+client\+\_\+node.\+cpp}\label{index_action_client_file}
+This file implements the Action Client Node, handling goal sending, status monitoring, and publishing position/velocity data.
+
+\DoxyHorRuler{0}
+\hypertarget{index_target_service_node}{}\doxysection{Target Service Node}\label{index_target_service_node}
+~\newline
+ The Target Service Node provides a service to return the current target coordinates and updates the target coordinates based on incoming messages. It performs the following tasks\+:
+\begin{DoxyItemize}
+\item Provides the {\ttfamily get\+\_\+target} service that responds with the current target coordinates (x, y).
+\item Subscribes to the {\ttfamily position\+\_\+velocity} topic to update the internal target coordinates.
+\end{DoxyItemize}\hypertarget{index_target_service_call_graph}{}\doxysubsection{Function Call Diagram}\label{index_target_service_call_graph}
+Below is the function call diagram for the Target Service Node\+: 
+\begin{DoxyImageNoCaption}
+  \mbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_2}}
+\end{DoxyImageNoCaption}
+\hypertarget{index_target_service_file}{}\doxysubsection{File\+: target\+\_\+service\+\_\+node.\+cpp}\label{index_target_service_file}
+This file implements the Target Service Node, handling the service and subscription to update target coordinates.
+
+\DoxyHorRuler{0}
+\hypertarget{index_files}{}\doxysection{Source Files}\label{index_files}
+The following are the source files for both nodes\+:
+\begin{DoxyItemize}
+\item {\bfseries{Action Client Node}}\+: {\ttfamily \mbox{\hyperlink{action__client__node_8cpp}{action\+\_\+client\+\_\+node.\+cpp}}}
+\item {\bfseries{Target Service Node}}\+: {\ttfamily \mbox{\hyperlink{target__service__node_8cpp}{target\+\_\+service\+\_\+node.\+cpp}}} 
+\end{DoxyItemize}

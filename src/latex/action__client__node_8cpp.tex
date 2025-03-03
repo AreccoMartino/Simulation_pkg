@@ -1,0 +1,245 @@
+\hypertarget{action__client__node_8cpp}{}\doxysection{action\+\_\+client\+\_\+node.\+cpp File Reference}
+\label{action__client__node_8cpp}\index{action\_client\_node.cpp@{action\_client\_node.cpp}}
+
+
+Action Client node for interacting with a R\+OS action server.  
+
+
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+{\ttfamily \#include $<$actionlib/client/simple\+\_\+action\+\_\+client.\+h$>$}\newline
+{\ttfamily \#include $<$assignment\+\_\+2\+\_\+2024/\+Planning\+Action.\+h$>$}\newline
+{\ttfamily \#include $<$nav\+\_\+msgs/\+Odometry.\+h$>$}\newline
+{\ttfamily \#include $<$Simulation\+\_\+pkg/\+Position\+Velocity.\+h$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$atomic$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+Include dependency graph for action\+\_\+client\+\_\+node.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::atomic$<$ bool $>$ \mbox{\hyperlink{action__client__node_8cpp_adfb2af476ffbaef72eac207d2c545eb1}{goal\+\_\+reached}} (false)
+\begin{DoxyCompactList}\small\item\em Atomic flag indicating whether the goal has been reached. \end{DoxyCompactList}\item 
+std\+::atomic$<$ bool $>$ \mbox{\hyperlink{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f}{request\+\_\+coordinates}} (false)
+\begin{DoxyCompactList}\small\item\em Atomic flag to request new coordinates from the user. \end{DoxyCompactList}\item 
+std\+::atomic$<$ bool $>$ \mbox{\hyperlink{action__client__node_8cpp_aa3cdebd8aff57fc482d93048470ee458}{goal\+\_\+canceled}} (false)
+\begin{DoxyCompactList}\small\item\em Atomic flag indicating whether the goal has been canceled. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}{odom\+Callback}} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Callback function to process odometry data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624}{monitor\+Goal\+Status}} ()
+\begin{DoxyCompactList}\small\item\em Monitors the goal status and updates flags accordingly. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{action__client__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Main function to initialize the R\+OS node and handle user interactions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Publisher \mbox{\hyperlink{action__client__node_8cpp_a4fa16312f7785ceb95706b18210ecd53}{position\+\_\+velocity\+\_\+pub}}
+\begin{DoxyCompactList}\small\item\em Publisher for the robot\textquotesingle{}s position and velocity. \end{DoxyCompactList}\item 
+Simulation\+\_\+pkg\+::\+Position\+Velocity \mbox{\hyperlink{action__client__node_8cpp_a21556e54fe2366655a12b317cae0a84d}{pos\+\_\+vel\+\_\+msg}}
+\begin{DoxyCompactList}\small\item\em Custom message for position and velocity. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ actionlib\+::\+Simple\+Action\+Client$<$ assignment\+\_\+2\+\_\+2024\+::\+Planning\+Action $>$ $>$ \mbox{\hyperlink{action__client__node_8cpp_a7211dfd6f65a9a0872dcef1144ed5dd7}{ac\+\_\+ptr}}
+\begin{DoxyCompactList}\small\item\em Action client pointer for sending goals. \end{DoxyCompactList}\item 
+std\+::mutex \mbox{\hyperlink{action__client__node_8cpp_a2bb3e1d421a9cb8cda2a2f56e381c74f}{ac\+\_\+mutex}}
+\begin{DoxyCompactList}\small\item\em Mutex for thread synchronization. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Action Client node for interacting with a R\+OS action server. 
+
+\begin{DoxyAuthor}{Author}
+Arecco Martino 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+27/02/2025
+\end{DoxyDate}
+This node acts as a R\+OS action client that sends goals to an action server and monitors their status. It also publishes the robot\textquotesingle{}s position and velocity.\hypertarget{target__service__node_8cpp_Subscribed_Topics}{}\doxysubsubsection{Subscribed\+\_\+\+Topics}\label{target__service__node_8cpp_Subscribed_Topics}
+
+\begin{DoxyItemize}
+\item {\ttfamily /odom} (nav\+\_\+msgs\+::\+Odometry)\+: Receives odometry data from the robot.
+\end{DoxyItemize}\hypertarget{target__service__node_8cpp_Published_Topics}{}\doxysubsubsection{Published\+\_\+\+Topics}\label{target__service__node_8cpp_Published_Topics}
+
+\begin{DoxyItemize}
+\item {\ttfamily /position\+\_\+velocity} (Simulation\+\_\+pkg\+::\+Position\+Velocity)\+: Publishes the robot\textquotesingle{}s position and velocity.
+\end{DoxyItemize}\hypertarget{action__client__node_8cpp_Action_Clients}{}\doxysubsubsection{Action\+\_\+\+Clients}\label{action__client__node_8cpp_Action_Clients}
+
+\begin{DoxyItemize}
+\item {\ttfamily /reaching\+\_\+goal} (assignment\+\_\+2\+\_\+2024\+::\+Planning\+Action)\+: Sends goals to the action server. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{action__client__node_8cpp_aa3cdebd8aff57fc482d93048470ee458}\label{action__client__node_8cpp_aa3cdebd8aff57fc482d93048470ee458}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!goal\_canceled@{goal\_canceled}}
+\index{goal\_canceled@{goal\_canceled}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{goal\_canceled()}{goal\_canceled()}}
+{\footnotesize\ttfamily std\+::atomic$<$bool$>$ goal\+\_\+canceled (\begin{DoxyParamCaption}\item[{false}]{ }\end{DoxyParamCaption})}
+
+
+
+Atomic flag indicating whether the goal has been canceled. 
+
+\mbox{\Hypertarget{action__client__node_8cpp_adfb2af476ffbaef72eac207d2c545eb1}\label{action__client__node_8cpp_adfb2af476ffbaef72eac207d2c545eb1}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!goal\_reached@{goal\_reached}}
+\index{goal\_reached@{goal\_reached}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{goal\_reached()}{goal\_reached()}}
+{\footnotesize\ttfamily std\+::atomic$<$bool$>$ goal\+\_\+reached (\begin{DoxyParamCaption}\item[{false}]{ }\end{DoxyParamCaption})}
+
+
+
+Atomic flag indicating whether the goal has been reached. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_adfb2af476ffbaef72eac207d2c545eb1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{action__client__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}\label{action__client__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!main@{main}}
+\index{main@{main}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Main function to initialize the R\+OS node and handle user interactions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of arguments. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on successful execution.
+\end{DoxyReturn}
+This function initializes the R\+OS node, sets up the action client, starts a monitoring thread, and continuously handles user input for setting/canceling goals. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624}\label{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!monitorGoalStatus@{monitorGoalStatus}}
+\index{monitorGoalStatus@{monitorGoalStatus}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{monitorGoalStatus()}{monitorGoalStatus()}}
+{\footnotesize\ttfamily void monitor\+Goal\+Status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Monitors the goal status and updates flags accordingly. 
+
+This function runs in a separate thread, checking the action server\textquotesingle{}s state. If the goal is reached, it updates the relevant flags and prompts the user for a new goal. Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{action__client__node_8cpp_aca2a42c0174bb5e45ddb5a69d7653624_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}\label{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!odomCallback@{odomCallback}}
+\index{odomCallback@{odomCallback}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{odomCallback()}{odomCallback()}}
+{\footnotesize\ttfamily void odom\+Callback (\begin{DoxyParamCaption}\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+Callback function to process odometry data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & The odometry message containing position and velocity.\\
+\hline
+\end{DoxyParams}
+This function extracts the robot\textquotesingle{}s position (x, y) and velocity (linear, angular) from the odometry message and publishes it as a custom message. Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_ae77e5d68ff0f4892f5154064e8b5e21c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f}\label{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!request\_coordinates@{request\_coordinates}}
+\index{request\_coordinates@{request\_coordinates}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{request\_coordinates()}{request\_coordinates()}}
+{\footnotesize\ttfamily std\+::atomic$<$bool$>$ request\+\_\+coordinates (\begin{DoxyParamCaption}\item[{false}]{ }\end{DoxyParamCaption})}
+
+
+
+Atomic flag to request new coordinates from the user. 
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{action__client__node_8cpp_a6f6ab01ddb5446f255990ca90234be5f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{action__client__node_8cpp_a2bb3e1d421a9cb8cda2a2f56e381c74f}\label{action__client__node_8cpp_a2bb3e1d421a9cb8cda2a2f56e381c74f}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!ac\_mutex@{ac\_mutex}}
+\index{ac\_mutex@{ac\_mutex}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{ac\_mutex}{ac\_mutex}}
+{\footnotesize\ttfamily std\+::mutex ac\+\_\+mutex}
+
+
+
+Mutex for thread synchronization. 
+
+\mbox{\Hypertarget{action__client__node_8cpp_a7211dfd6f65a9a0872dcef1144ed5dd7}\label{action__client__node_8cpp_a7211dfd6f65a9a0872dcef1144ed5dd7}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!ac\_ptr@{ac\_ptr}}
+\index{ac\_ptr@{ac\_ptr}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{ac\_ptr}{ac\_ptr}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$actionlib\+::\+Simple\+Action\+Client$<$assignment\+\_\+2\+\_\+2024\+::\+Planning\+Action$>$ $>$ ac\+\_\+ptr}
+
+
+
+Action client pointer for sending goals. 
+
+\mbox{\Hypertarget{action__client__node_8cpp_a21556e54fe2366655a12b317cae0a84d}\label{action__client__node_8cpp_a21556e54fe2366655a12b317cae0a84d}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!pos\_vel\_msg@{pos\_vel\_msg}}
+\index{pos\_vel\_msg@{pos\_vel\_msg}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{pos\_vel\_msg}{pos\_vel\_msg}}
+{\footnotesize\ttfamily Simulation\+\_\+pkg\+::\+Position\+Velocity pos\+\_\+vel\+\_\+msg}
+
+
+
+Custom message for position and velocity. 
+
+\mbox{\Hypertarget{action__client__node_8cpp_a4fa16312f7785ceb95706b18210ecd53}\label{action__client__node_8cpp_a4fa16312f7785ceb95706b18210ecd53}} 
+\index{action\_client\_node.cpp@{action\_client\_node.cpp}!position\_velocity\_pub@{position\_velocity\_pub}}
+\index{position\_velocity\_pub@{position\_velocity\_pub}!action\_client\_node.cpp@{action\_client\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{position\_velocity\_pub}{position\_velocity\_pub}}
+{\footnotesize\ttfamily ros\+::\+Publisher position\+\_\+velocity\+\_\+pub}
+
+
+
+Publisher for the robot\textquotesingle{}s position and velocity. 
+
